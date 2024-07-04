@@ -15,7 +15,7 @@ public class MaterialService {
 
     public Optional<Material> getMaterial(String materialId) throws AccountNotFoundException {
         String factoryCode = SfUtils.getFactoryCode();
-        return materialRepository.findById(new MaterialId("factoryCode1", materialId));
+        return materialRepository.findById(new MaterialId(factoryCode, materialId));
     }
 
     public void addMaterial(Material material) {

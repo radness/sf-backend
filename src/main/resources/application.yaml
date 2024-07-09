@@ -18,4 +18,4 @@ spring:
 
 sf:
   entry:
-    factoryCode: 1000
+    factoryId: 1000

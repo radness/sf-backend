@@ -15,7 +15,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 public class MaterialId implements Serializable {
 
-    @Value("${sf.entry.factoryCode}")
+    @Value("${sf.entry.factoryId}")
     @Column(name = "factory_code")
     private String factoryCode;
 

@@ -1,6 +1,8 @@
 package com.radness.sf.wip.lot;
 
+import com.radness.sf.order.OrderRepository;
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -10,6 +12,8 @@ import java.util.Optional;
 public class WipLotService {
 
     private final WipLotRepository wipLotRepository;
+    private final OrderRepository orderRepository;
+    private final ModelMapper modelMapper;
 
     public Optional<WipLot> getWipLot(String wipLotId) {
         return wipLotRepository.findById(wipLotId);
@@ -23,12 +27,15 @@ public class WipLotService {
         wipLotRepository.deleteById(wipLotId);
     }
 
-    public void startWipLot(String wipLotId) {
-        WipLot wipLot = wipLotRepository.findById(wipLotId)
+    public void startWipLot(WipLot input) {
+        WipLot wipLot = wipLotRepository.findById(input.getWipLotId())
                 .orElseThrow(() -> new IllegalArgumentException("wip lot does not exist."));
         if (wipLot.isStart()) {
             throw new IllegalArgumentException("wip lot is already started.");
         }
-
+        modelMapper.map(input, wipLot);
+        wipLot.setStart(true);
+        wipLot.setLotStatus(WIpLotStatus.PROCESS);
+        wipLotRepository.saveLotAndHistory(wipLot);
     }
 }

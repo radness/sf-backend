@@ -12,9 +12,9 @@ public class WipLotController {
 
     private final WipLotService wipLotService;
 
-    @GetMapping("/{wipLotId}")
-    public Optional<WipLot> viewWipLot(@PathVariable String wipLotId) {
-        return wipLotService.getWipLot(wipLotId);
+    @GetMapping("/{lotId}")
+    public Optional<WipLot> viewWipLot(@PathVariable String lotId) {
+        return wipLotService.getWipLot(lotId);
     }
 
     @PostMapping()
@@ -22,8 +22,8 @@ public class WipLotController {
         return wipLotService.createWipLot(wipLot);
     }
 
-    @DeleteMapping("/{wipLotId}")
-    public void deleteWipLot(@PathVariable String wipLotId) {
-        wipLotService.deleteWipLot(wipLotId);
+    @DeleteMapping("/{lotId}")
+    public void deleteWipLot(@PathVariable String lotId) {
+        wipLotService.deleteWipLot(lotId);
     }
 }

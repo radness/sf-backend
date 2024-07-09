@@ -16,13 +16,14 @@ import java.util.Date;
 public class WipLot {
 
     @Id
-    private String lotId;
+    private String wipLotId;
 
     private String factoryId;
 
     private String lotType;
 
-    private String lotStatus;
+    @Enumerated(EnumType.STRING)
+    private WIpLotStatus lotStatus;
 
     private String materialId;
 

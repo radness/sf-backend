@@ -21,7 +21,7 @@ public class Order {
 
     private String orderDescription;
 
-    private String orderStatus;
+    private OrderStatus orderStatus;
 
     private int orderPriority;
 

@@ -4,5 +4,4 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface WipLotRepository extends JpaRepository<WipLot, String> {
 
-    void saveLotAndHistory(WipLot wipLot);
 }

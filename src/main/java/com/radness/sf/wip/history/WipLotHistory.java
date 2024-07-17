@@ -1,4 +1,4 @@
-package com.radness.sf.wip.lot;
+package com.radness.sf.wip.history;
 
 import jakarta.persistence.*;
 import lombok.*;

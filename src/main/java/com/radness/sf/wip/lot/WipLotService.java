@@ -1,6 +1,7 @@
 package com.radness.sf.wip.lot;
 
 import com.radness.sf.order.OrderRepository;
+import com.radness.sf.wip.util.WipUtil;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -36,6 +37,8 @@ public class WipLotService {
         modelMapper.map(input, wipLot);
         wipLot.setStart(true);
         wipLot.setLotStatus(WIpLotStatus.PROCESS);
-        wipLotRepository.saveLotAndHistory(wipLot);
+//        wipLotRepository.saveLotAndHistory(wipLot);
+        WipUtil.saveWipLotAndHistory(wipLot);
+
     }
 }

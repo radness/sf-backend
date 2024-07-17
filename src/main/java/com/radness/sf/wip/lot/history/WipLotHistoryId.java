@@ -1,4 +1,4 @@
-package com.radness.sf.wip.history;
+package com.radness.sf.wip.lot.history;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;

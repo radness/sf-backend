@@ -1,7 +1,7 @@
 package com.radness.sf.wip.util;
 
-import com.radness.sf.wip.history.WipLotHistory;
-import com.radness.sf.wip.history.WipLotHistoryRepository;
+import com.radness.sf.wip.lot.history.WipLotHistory;
+import com.radness.sf.wip.lot.history.WipLotHistoryRepository;
 import com.radness.sf.wip.lot.WipLot;
 import com.radness.sf.wip.lot.WipLotRepository;
 import org.modelmapper.ModelMapper;

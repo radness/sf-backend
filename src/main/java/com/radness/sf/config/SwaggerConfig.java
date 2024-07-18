@@ -23,7 +23,7 @@ public class SwaggerConfig {
 
 //    @Bean
 //    public GroupedOpenApi api() {
-//        String[] paths = {"api/v1/**"};
+//        String[] paths = {"api/v3/**"};
 //        String[] packagesToScan = {"com.radness.sf.springdoc"};
 //        return GroupedOpenApi.builder().group("springdic-openapi")
 //                .pathsToMatch(paths)

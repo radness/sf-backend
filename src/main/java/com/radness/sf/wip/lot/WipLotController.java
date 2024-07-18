@@ -7,7 +7,7 @@ import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/v1/wip/lot")
+@RequestMapping("/v3/wip/lots")
 public class WipLotController {
 
     private final WipLotService wipLotService;

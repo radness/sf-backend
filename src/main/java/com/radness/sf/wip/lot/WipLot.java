@@ -33,11 +33,11 @@ public class WipLot {
 
     private String orderId;
 
-    private String locationId;
-
     private String areaId;
 
     private String zoneId;
+
+    private String locationId;
 
     private String batchId;
 

@@ -26,4 +26,8 @@ public class WipLotController {
     public void deleteWipLot(@PathVariable String lotId) {
         wipLotService.deleteWipLot(lotId);
     }
+
+    public void startWipLot(@PathVariable String lotId) {
+
+    }
 }

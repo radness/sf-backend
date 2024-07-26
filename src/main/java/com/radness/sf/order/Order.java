@@ -39,6 +39,12 @@ public class Order {
 
     private double lossQty;
 
+    private String routingId;
+
+    private String lineId;
+
+    private String equipmentId;
+
     @Temporal(TemporalType.TIMESTAMP)
     private Date orderStartTime;
 

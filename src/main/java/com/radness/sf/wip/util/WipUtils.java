@@ -4,12 +4,14 @@ import com.radness.sf.wip.lot.history.WipLotHistory;
 import com.radness.sf.wip.lot.history.WipLotHistoryRepository;
 import com.radness.sf.wip.lot.WipLot;
 import com.radness.sf.wip.lot.WipLotRepository;
+import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class WipUtil {
+@RequiredArgsConstructor
+public class WipUtils {
 
     private static WipLotRepository wipLotRepository;
     private static WipLotHistoryRepository wipLotHistoryRepository;
@@ -17,15 +19,15 @@ public class WipUtil {
 
     @Autowired
     public void setWipLotRepository(WipLotRepository wipLotRepository) {
-        WipUtil.wipLotRepository = wipLotRepository;
+        WipUtils.wipLotRepository = wipLotRepository;
     }
     @Autowired
     public void setWipLotHistoryRepository(WipLotHistoryRepository wipLotHistoryRepository) {
-        WipUtil.wipLotHistoryRepository = wipLotHistoryRepository;
+        WipUtils.wipLotHistoryRepository = wipLotHistoryRepository;
     }
     @Autowired
     public void setModelMapper(ModelMapper modelMapper) {
-        WipUtil.modelMapper = modelMapper;
+        WipUtils.modelMapper = modelMapper;
     }
 
     public static void saveWipLotAndHistory(WipLot wipLot) {

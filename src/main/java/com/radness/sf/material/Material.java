@@ -1,9 +1,9 @@
 package com.radness.sf.material;
 
-import jakarta.persistence.EmbeddedId;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.Date;
 
 @Entity
 @Getter
@@ -21,7 +21,8 @@ public class Material {
 
     private String materialDescription;
 
-    private String materialType;
+    @Enumerated(EnumType.STRING)
+    private MaterialType materialType;
 
     private double qty;
 
@@ -30,4 +31,21 @@ public class Material {
     private String vendorId;
 
     private String customerId;
+
+    private boolean isDeleted;
+
+    private String deleteUserId;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date deleteDateTime;
+
+    private String createUserId;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createDateTime;
+
+    private String updateUserId;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date updateDateTime;
 }

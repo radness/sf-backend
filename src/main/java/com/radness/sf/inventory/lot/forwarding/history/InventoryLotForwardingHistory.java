@@ -36,7 +36,7 @@ public class InventoryLotForwardingHistory {
 
     private String lineId;
 
-    private String processId;
+    private String operationId;
 
     private String reasonCode;
 

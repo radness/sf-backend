@@ -1,6 +1,6 @@
 package com.radness.sf.wip.lot;
 
-public enum WIpLotStatus {
+public enum WipLotStatus {
     CREATE,
     PROCESS,
     WAIT,

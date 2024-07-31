@@ -50,7 +50,7 @@ public class WipLotHistory {
     @Temporal(TemporalType.TIMESTAMP)
     private Date routingInDateTime;
 
-    private String processId;
+    private String operationId;
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date processInDateTime;
@@ -75,7 +75,7 @@ public class WipLotHistory {
 
     private String reworkReturnRoutingId;
 
-    private String reworkReturnProcessId;
+    private String reworkReturnOperationId;
 
     private Date reworkStartDateTime;
 

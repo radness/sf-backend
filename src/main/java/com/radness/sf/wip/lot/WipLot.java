@@ -23,7 +23,7 @@ public class WipLot {
     private String lotType;
 
     @Enumerated(EnumType.STRING)
-    private WIpLotStatus lotStatus;
+    private WipLotStatus lotStatus;
 
     private String materialId;
 
@@ -45,7 +45,7 @@ public class WipLot {
 
     private String routingId;
 
-    private String processId;
+    private String operationId;
 
     private String equipmentId;
 

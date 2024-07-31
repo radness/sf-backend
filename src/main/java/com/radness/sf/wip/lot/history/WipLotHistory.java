@@ -14,7 +14,7 @@ import java.util.Date;
 @Table(name = "wip_lot_history")
 public class WipLotHistory {
 
-    @Id
+    @EmbeddedId
     private WipLotHistoryId id;
 
     @Temporal(TemporalType.TIMESTAMP)

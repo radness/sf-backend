@@ -2,6 +2,8 @@ package com.radness.sf.wip.lot;
 
 import com.radness.sf.operation.Operation;
 import com.radness.sf.operation.OperationRepository;
+import com.radness.sf.routing.operation.NextRoutingOperation;
+import com.radness.sf.routing.operation.RoutingOperation;
 import com.radness.sf.wip.lot.history.WipLotHistory;
 import com.radness.sf.wip.util.WipUtils;
 import lombok.RequiredArgsConstructor;
@@ -71,8 +73,25 @@ public class WipLotService {
         return Optional.ofNullable(wipLot);
     }
 
-    public WipLot pullWipLot(String lotId, WipLot wipLot) {
-        return null;
+    public WipLot pullWipLot(String lotId, WipLot input) {
+        WipLot wipLot = wipLotRepository.findById(input.getWipLotId())
+                .orElseThrow(() -> new IllegalArgumentException("wip lot does not exist."));
+        Operation operation = operationRepository.findById(wipLot.getOperationId())
+                .orElseThrow(() -> new IllegalArgumentException("operation does not exist."));
+        if (!operation.isPull()) {
+            throw new IllegalArgumentException("operation is not pull.");
+        }
+        if (!wipLot.isEnd()) {
+            throw new IllegalArgumentException("wip lot status is not end.");
+        }
+        WipLot previousWipLot = new ModelMapper().map(wipLot, WipLot.class);
+        modelMapper.map(input, wipLot);
+        // TODO : 다음 공정 가져오기
+        NextRoutingOperation nextOperation = WipUtils.getNextOperation(wipLot);
+        modelMapper.map(nextOperation, wipLot);
+        wipLot.setLotStatus(WipLotStatus.WAIT);
+        WipUtils.updateWipLotAndHistory("PULL", wipLot, previousWipLot);
+        return wipLot;
     }
 
     public WipLot moveWipLot(String lotId, WipLot wipLot) {

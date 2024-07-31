@@ -5,6 +5,8 @@ import com.radness.sf.operation.OperationRepository;
 import com.radness.sf.routing.operation.NextRoutingOperation;
 import com.radness.sf.routing.operation.RoutingOperation;
 import com.radness.sf.wip.lot.history.WipLotHistory;
+import com.radness.sf.wip.lot.move.MoveWipLot;
+import com.radness.sf.wip.util.WipLotTransactionType;
 import com.radness.sf.wip.util.WipUtils;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -76,7 +78,9 @@ public class WipLotService {
     public WipLot pullWipLot(String lotId, WipLot input) {
         WipLot wipLot = wipLotRepository.findById(input.getWipLotId())
                 .orElseThrow(() -> new IllegalArgumentException("wip lot does not exist."));
-        Operation operation = operationRepository.findById(wipLot.getOperationId())
+        Operation operation = operation
+        @ApiModelProperty("위치 2")
+        private String location2;Repository.findById(wipLot.getOperationId())
                 .orElseThrow(() -> new IllegalArgumentException("operation does not exist."));
         if (!operation.isPull()) {
             throw new IllegalArgumentException("operation is not pull.");
@@ -90,12 +94,28 @@ public class WipLotService {
         NextRoutingOperation nextOperation = WipUtils.getNextOperation(wipLot);
         modelMapper.map(nextOperation, wipLot);
         wipLot.setLotStatus(WipLotStatus.WAIT);
-        WipUtils.updateWipLotAndHistory("PULL", wipLot, previousWipLot);
+        WipUtils.updateWipLotAndHistory(String.valueOf(WipLotTransactionType.PULL), wipLot, previousWipLot);
         return wipLot;
     }
 
-    public WipLot moveWipLot(String lotId, WipLot wipLot) {
-        return null;
+    public WipLot moveWipLot(MoveWipLot input) {
+        WipLot wipLot = wipLotRepository.findById(input.getWipLotId())
+                .orElseThrow(() -> new IllegalArgumentException("wip lot does not exist."));
+        Operation operation = operationRepository.findById(wipLot.getOperationId())
+                .orElseThrow(() -> new IllegalArgumentException("operation does not exist."));
+        if (operation.isPull()) {
+            NextRoutingOperation nextOperation = WipUtils.getNextOperation(wipLot);
+            if (nextOperation.getOperationId() != null && nextOperation.getOperationId().equals(input.getNextOperationId())) {
+                throw new IllegalArgumentException("operation is already pull.");
+            }
+        }
+        WipLot previousWipLot = new ModelMapper().map(wipLot, WipLot.class);
+        modelMapper.map(input, wipLot);
+        wipLot.setRoutingId(input.getNextOperationId());
+        wipLot.setOperationId(input.getCurrentOperationId());
+        wipLot.setLotStatus(WipLotStatus.WAIT);
+        WipUtils.updateWipLotAndHistory(String.valueOf(WipLotTransactionType.MOVE), wipLot, previousWipLot);
+        return wipLot;
     }
 
     public WipLot splitWipLot(String lotId, WipLot wipLot) {

@@ -60,7 +60,7 @@ public class WipUtils {
         wipLotHistoryRepository.save(wipLotHistory);
     }
 
-    public static void updateWipLotAndHistory(String tranCode, WipLot wipLot, WipLot previousWipLot) {
+    public static void updateWipLotAndHistory(String transactionCode, WipLot wipLot, WipLot previousWipLot) {
         Date tranDateTime = new Timestamp(System.currentTimeMillis());
 
         Optional<Operation> operation = operationRepository.findById(wipLot.getOperationId());

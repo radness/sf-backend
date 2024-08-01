@@ -6,6 +6,7 @@ import com.radness.sf.routing.operation.NextRoutingOperation;
 import com.radness.sf.routing.operation.RoutingOperation;
 import com.radness.sf.wip.lot.history.WipLotHistory;
 import com.radness.sf.wip.lot.move.MoveWipLot;
+import com.radness.sf.wip.lot.split.SplitWipLot;
 import com.radness.sf.wip.util.WipLotTransactionType;
 import com.radness.sf.wip.util.WipUtils;
 import lombok.RequiredArgsConstructor;
@@ -116,8 +117,15 @@ public class WipLotService {
         return wipLot;
     }
 
-    public WipLot splitWipLot(String lotId, WipLot wipLot) {
-        return null;
+    public WipLot splitWipLot(SplitWipLot input) {
+        WipLot currentWipLot = wipLotRepository.findById(input.getWipLotId())
+                .orElseThrow(() -> new IllegalArgumentException("wip lot does not exist."));
+        WipLot newWipLot = new ModelMapper().map(currentWipLot, WipLot.class);
+        modelMapper.map(input, currentWipLot);
+        currentWipLot.setQty(currentWipLot.getQty() - input.getQty());
+        newWipLot.setQty(input.getQty());
+        WipUtils.updateWipLotAndHistory(String.valueOf(WipLotTransactionType.SPLIT), currentWipLot, newWipLot);
+        return currentWipLot;
     }
 
     public WipLot mergeWipLot(String lotId, WipLot wipLot) {

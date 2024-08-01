@@ -78,9 +78,7 @@ public class WipLotService {
     public WipLot pullWipLot(String lotId, WipLot input) {
         WipLot wipLot = wipLotRepository.findById(input.getWipLotId())
                 .orElseThrow(() -> new IllegalArgumentException("wip lot does not exist."));
-        Operation operation = operation
-        @ApiModelProperty("위치 2")
-        private String location2;Repository.findById(wipLot.getOperationId())
+        Operation operation = operationRepository.findById(wipLot.getOperationId())
                 .orElseThrow(() -> new IllegalArgumentException("operation does not exist."));
         if (!operation.isPull()) {
             throw new IllegalArgumentException("operation is not pull.");

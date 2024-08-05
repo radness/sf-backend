@@ -3,6 +3,7 @@ package com.radness.sf.material;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -10,15 +11,20 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class MaterialController {
 
-    private MaterialService materialService;
+    private final MaterialService materialService;
 
     @GetMapping("/{materialId}")
-    public Optional<Material> viewMaterial(@PathVariable("materialId") String materialId) throws Exception {
+    public Optional<Material> getMaterial(@PathVariable("materialId") String materialId) throws Exception {
         return materialService.getMaterial(materialId);
     }
 
+    @GetMapping()
+    public List<Material> getAllMaterials() {
+        return materialService.getMaterial();
+    }
+
     @PostMapping()
-    public void newMaterial(@RequestBody Material material) {
+    public void addMaterial(@RequestBody Material material) {
         materialService.addMaterial(material);
     }
 

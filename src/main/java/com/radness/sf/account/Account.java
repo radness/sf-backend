@@ -20,7 +20,7 @@ public class Account {
     private String id;
 
     @Getter
-    private String factoryCode;
+    private String factoryId;
 
     @Column(unique = true)
     private String email;

@@ -1,21 +1,27 @@
 package com.radness.sf.material;
 
-import com.radness.sf.util.SfUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.security.auth.login.AccountNotFoundException;
+import java.util.List;
 import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class MaterialService {
 
-    private MaterialRepository materialRepository;
+    private final MaterialRepository materialRepository;
+
+    String factoryId = "1000";
 
     public Optional<Material> getMaterial(String materialId) throws AccountNotFoundException {
-        String factoryCode = SfUtils.getFactoryCode();
-        return materialRepository.findById(new MaterialId(factoryCode, materialId));
+//        String factoryId = SfUtils.getFactoryId();
+        return materialRepository.findById(new MaterialId(factoryId, materialId));
+    }
+
+    public List<Material> getMaterial() {
+        return materialRepository.findAll();
     }
 
     public void addMaterial(Material material) {

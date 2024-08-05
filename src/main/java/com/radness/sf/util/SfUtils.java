@@ -18,9 +18,9 @@ public class SfUtils {
         SfUtils.accountRepository = accountRepository;
     }
 
-    public static String getFactoryCode() throws AccountNotFoundException {
+    public static String getFactoryId() throws AccountNotFoundException {
         Optional<Account> account = getAccount();
-        return account.get().getFactoryCode();
+        return account.get().getFactoryId();
     }
 
     private static Optional<Account> getAccount() throws AccountNotFoundException {

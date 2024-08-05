@@ -1,6 +1,8 @@
 package com.radness.sf.wip.lot;
 
 import com.radness.sf.wip.lot.history.WipLotHistory;
+import com.radness.sf.wip.lot.move.MoveWipLot;
+import com.radness.sf.wip.lot.split.SplitWipLot;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -40,7 +42,7 @@ public class WipLotController {
     }
 
     @PostMapping("/{lotId}/end")
-    public WipLot endWipLot(@PathVariable String lotId, @RequestBody WipLot wipLot) {
+    public Optional<WipLot> endWipLot(@PathVariable String lotId, @RequestBody WipLot wipLot) {
         return wipLotService.endWipLot(lotId, wipLot);
     }
 
@@ -55,12 +57,12 @@ public class WipLotController {
     }
 
     @PostMapping("/{lotId}/move")
-    public WipLot moveWipLot(@PathVariable String lotId, @RequestBody WipLot wipLot) {
+    public WipLot moveWipLot(@PathVariable String lotId, @RequestBody MoveWipLot wipLot) {
         return wipLotService.moveWipLot(lotId, wipLot);
     }
 
     @PostMapping("/{lotId}/split")
-    public WipLot splitWipLot(@PathVariable String lotId, @RequestBody WipLot wipLot) {
+    public WipLot splitWipLot(@PathVariable String lotId, @RequestBody SplitWipLot wipLot) {
         return wipLotService.splitWipLot(lotId, wipLot);
     }
 

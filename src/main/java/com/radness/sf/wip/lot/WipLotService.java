@@ -97,8 +97,8 @@ public class WipLotService {
         return wipLot;
     }
 
-    public WipLot moveWipLot(MoveWipLot input) {
-        WipLot wipLot = wipLotRepository.findById(input.getWipLotId())
+    public WipLot moveWipLot(String lotId, MoveWipLot input) {
+        WipLot wipLot = wipLotRepository.findById(lotId)
                 .orElseThrow(() -> new IllegalArgumentException("wip lot does not exist."));
         Operation operation = operationRepository.findById(wipLot.getOperationId())
                 .orElseThrow(() -> new IllegalArgumentException("operation does not exist."));
@@ -117,8 +117,8 @@ public class WipLotService {
         return wipLot;
     }
 
-    public WipLot splitWipLot(SplitWipLot input) {
-        WipLot currentWipLot = wipLotRepository.findById(input.getWipLotId())
+    public WipLot splitWipLot(String lotId, SplitWipLot input) {
+        WipLot currentWipLot = wipLotRepository.findById(lotId)
                 .orElseThrow(() -> new IllegalArgumentException("wip lot does not exist."));
         WipLot newWipLot = new ModelMapper().map(currentWipLot, WipLot.class);
         modelMapper.map(input, currentWipLot);

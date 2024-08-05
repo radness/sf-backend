@@ -2,7 +2,9 @@ package com.radness.sf.routing.operation;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.beans.factory.annotation.Value;
 
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity
@@ -11,6 +13,7 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@IdClass(RoutingOperationPk.class)
 @Table(name = "routing_operation")
 public class RoutingOperation {
 

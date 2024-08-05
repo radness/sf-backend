@@ -4,6 +4,7 @@ import com.radness.sf.operation.Operation;
 import com.radness.sf.operation.OperationRepository;
 import com.radness.sf.routing.operation.NextRoutingOperation;
 import com.radness.sf.routing.operation.RoutingOperation;
+import com.radness.sf.routing.operation.RoutingOperationPk;
 import com.radness.sf.routing.operation.RoutingOperationRepository;
 import com.radness.sf.wip.lot.WipLotStatus;
 import com.radness.sf.wip.lot.history.WipLotHistory;
@@ -78,15 +79,14 @@ public class WipUtils {
         lastWipLotHistory.setTransactionDateTime(tranDateTime);
         lastWipLotHistory.setUpdateDateTime(tranDateTime);
         wipLotHistoryRepository.save(lastWipLotHistory);
-
     }
 
     public static NextRoutingOperation getNextOperation(WipLot wipLot) {
-        RoutingOperation ro = new RoutingOperation();
+        RoutingOperationPk ro = new RoutingOperationPk();
         ro.setFactoryId("${sf.entry.factoryId}");
         ro.setRoutingId(wipLot.getRoutingId());
-        ro.setNextOperationId(wipLot.getOperationId());
-        RoutingOperation routingOperation = routingOperationRepository.findById(String.valueOf(ro))
+        ro.setOperationId(wipLot.getOperationId());
+        RoutingOperation routingOperation = routingOperationRepository.findById(ro)
                 .orElseThrow(() -> new IllegalArgumentException("RoutingOperation not found"));
         NextRoutingOperation nextRoutingOperation = new NextRoutingOperation();
         nextRoutingOperation.setRoutingId(routingOperation.getRoutingId());

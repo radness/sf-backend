@@ -13,11 +13,11 @@ import java.io.Serializable;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class MaterialId implements Serializable {
+public class MaterialPK implements Serializable {
 
     @Value("${sf.entry.factoryId}")
-    @Column(name = "factory_code")
-    private String factoryCode;
+    @Column(name = "factory_id")
+    private String factoryId;
 
     @Column(name = "material_id")
     private String materialId;

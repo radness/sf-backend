@@ -17,7 +17,7 @@ public class MaterialService {
 
     public Optional<Material> getMaterial(String materialId) throws AccountNotFoundException {
 //        String factoryId = SfUtils.getFactoryId();
-        return materialRepository.findById(new MaterialId(factoryId, materialId));
+        return materialRepository.findById(new MaterialPK(factoryId, materialId));
     }
 
     public List<Material> getMaterial() {
@@ -25,7 +25,7 @@ public class MaterialService {
     }
 
     public void addMaterial(Material material) {
-        Optional<Material> byId = materialRepository.findById(new MaterialId(material.getId().getFactoryCode(), material.getId().getMaterialId()));
+        Optional<Material> byId = materialRepository.findById(new MaterialPK(material.getFactoryId(), material.getMaterialId()));
         if (byId.isPresent()) {
             throw new RuntimeException("Material already exists");
         }
@@ -33,10 +33,10 @@ public class MaterialService {
     }
 
     public void deleteMaterial(Material material) {
-        Optional<Material> byId = materialRepository.findById(new MaterialId(material.getId().getFactoryCode(), material.getId().getMaterialId()));
+        Optional<Material> byId = materialRepository.findById(new MaterialPK(material.getFactoryId(), material.getMaterialId()));
         if (byId.isEmpty()) {
             throw new RuntimeException("Material does not exist");
         }
-        materialRepository.deleteById(new MaterialId(material.getId().getFactoryCode(), material.getId().getMaterialId()));
+        materialRepository.deleteById(new MaterialPK(material.getFactoryId(), material.getMaterialId()));
     }
 }

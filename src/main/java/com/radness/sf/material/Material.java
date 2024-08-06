@@ -2,6 +2,7 @@ package com.radness.sf.material;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.beans.factory.annotation.Value;
 
 import java.util.Date;
 
@@ -11,11 +12,18 @@ import java.util.Date;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@IdClass(MaterialPK.class)
 @Table(name = "materials")
 public class Material {
 
-    @EmbeddedId
-    private MaterialId id;
+    @Id
+    @Value("${sf.entry.factoryId}")
+    @Column(name = "factory_id")
+    private String factoryId;
+
+    @Id
+    @Column(name = "material_id")
+    private String materialId;
 
     private String materialName;
 

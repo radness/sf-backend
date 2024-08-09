@@ -26,6 +26,17 @@ spring:
     user:
       name: admin
       password: 1234
+  #docker 설정
+  config:
+    activate:
+      on-profile:
+        - dev
+      datasource:
+        driver-class-name: org.postgresql.Driver
+        url: jdbc:postgresql://host.docker.internal:5432/mes_dev
+        username: postgres
+        password: root
+
 sf:
   entry:
     factoryId: 1000

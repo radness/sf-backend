@@ -5,13 +5,19 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
-@Service
-@RequiredArgsConstructor
 public class InspectionRequestService {
 
     private final InspectionRequestRepository inspectionRequestRepository;
 
-    public Optional<InspectionRequest> getInspectionRequest(String inspectionId) {
+    public InspectionRequestService(InspectionRequestRepository inspectionRequestRepository) {
+        this.inspectionRequestRepository = inspectionRequestRepository;
+    }
+
+    public Optional<InspectionRequest> getInspectionRequest(Long inspectionId) {
         return inspectionRequestRepository.findByInspectionId(inspectionId);
+    }
+
+    public InspectionRequest create(InspectionRequest inspectionRequest) {
+        return inspectionRequestRepository.save(inspectionRequest);
     }
 }

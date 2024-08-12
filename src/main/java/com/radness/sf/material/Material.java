@@ -40,7 +40,8 @@ public class Material {
 
     private String customerId;
 
-    private boolean isDeleted;
+    @Column(columnDefinition = "boolean default false")
+    private Boolean isDeleted;
 
     private String deleteUserId;
 

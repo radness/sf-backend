@@ -1,5 +1,9 @@
 package com.radness.sf.config;
 
+import com.radness.sf.quality.inspection.item.InspectionItem;
+import com.radness.sf.quality.inspection.item.InspectionItemRepository;
+import com.radness.sf.quality.inspection.item.InspectionItemService;
+import com.radness.sf.quality.inspection.item.NamedParameterJdbcTemplateInspectionItemRepository;
 import com.radness.sf.quality.inspection.request.InspectionRequestRepository;
 import com.radness.sf.quality.inspection.request.InspectionRequestService;
 import com.radness.sf.quality.inspection.request.JdbcTemplateInspectionRequestRepository;
@@ -27,6 +31,16 @@ public class SpringConfig {
     @Bean
     public InspectionRequestRepository inspectionRequestRepository() {
         return new JdbcTemplateInspectionRequestRepository(dataSource);
+    }
+
+    @Bean
+    public InspectionItemService inspectionItemService() {
+        return new InspectionItemService(inspectionItemRepository());
+    }
+
+    @Bean
+    public InspectionItemRepository inspectionItemRepository() {
+        return new NamedParameterJdbcTemplateInspectionItemRepository(dataSource);
     }
 
 }

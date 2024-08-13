@@ -1,9 +1,10 @@
 package com.radness.sf.quality.inspection.item;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import java.util.Optional;
 
-public interface InspectionItemRepository extends JpaRepository<InspectionItem, String> {
+public interface InspectionItemRepository {
 
-    InspectionItem findByInspectionItemCode(String inspectionItemId);
+    InspectionItem findByInspectionItemCode(Long inspectionItemCode);
 
+    InspectionItem save(InspectionItem inspectionItem);
 }

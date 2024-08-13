@@ -5,7 +5,6 @@ import lombok.*;
 
 import java.util.Date;
 
-@Entity
 @Getter
 @Setter
 @NoArgsConstructor
@@ -14,18 +13,17 @@ import java.util.Date;
 @Table(name = "inspection_items")
 public class InspectionItem {
 
-    @Id
-    private String inspectionItemCode;
+    private Long inspectionItemCode;
 
     private String inspectionItemDescription;
 
-    private String createUserId;
-
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date createDateTime;
-
-    private String updateUserId;
-
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date updateDateTime;
+//    private String createUserId;
+//
+//    @Temporal(TemporalType.TIMESTAMP)
+//    private Date createDateTime;
+//
+//    private String updateUserId;
+//
+//    @Temporal(TemporalType.TIMESTAMP)
+//    private Date updateDateTime;
 }

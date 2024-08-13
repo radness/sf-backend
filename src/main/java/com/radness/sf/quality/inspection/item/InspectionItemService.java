@@ -1,15 +1,20 @@
 package com.radness.sf.quality.inspection.item;
 
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
+import java.util.Optional;
 
-@Service
-@RequiredArgsConstructor
 public class InspectionItemService {
 
     private final InspectionItemRepository inspectionItemRepository;
 
-    public InspectionItem getInspectionItem(String inspectionItemId) {
+    public InspectionItemService(InspectionItemRepository inspectionItemRepository) {
+        this.inspectionItemRepository = inspectionItemRepository;
+    }
+
+    public InspectionItem get(Long inspectionItemId) {
         return inspectionItemRepository.findByInspectionItemCode(inspectionItemId);
+    }
+
+    public InspectionItem create(InspectionItem inspectionItem) {
+        return inspectionItemRepository.save(inspectionItem);
     }
 }

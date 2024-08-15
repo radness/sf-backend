@@ -11,6 +11,7 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@IdClass(BomPK.class)
 @Table(name = "boms")
 public class Bom {
 
@@ -31,6 +32,7 @@ public class Bom {
 
     private String unit;
 
+    @Id
     @Temporal(TemporalType.DATE)
     private Date effectiveStartDate;
 

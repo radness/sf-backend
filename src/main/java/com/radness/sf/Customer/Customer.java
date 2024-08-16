@@ -15,6 +15,9 @@ import lombok.*;
 public class Customer {
 
     @Id
+    private String factoryId;
+
+    @Id
     private String customerId;
 
     private String customerDescription;

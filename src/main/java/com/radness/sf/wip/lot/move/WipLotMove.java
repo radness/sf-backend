@@ -3,7 +3,7 @@ package com.radness.sf.wip.lot.move;
 import lombok.Data;
 
 @Data
-public class MoveWipLot {
+public class WipLotMove {
     private String wipLotId;
 
     private String factoryId;

@@ -2,6 +2,7 @@ package com.radness.sf.Customer;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.IdClass;
 import jakarta.persistence.Table;
 import lombok.*;
 
@@ -11,6 +12,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@IdClass(CustomerPK.class)
 @Table(name = "customers")
 public class Customer {
 

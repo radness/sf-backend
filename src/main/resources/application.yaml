@@ -30,6 +30,8 @@ spring:
     user:
       name: admin
       password: 1234
+  jwt:
+    secret: vmfhaltmskdlstkfkdgodyroqkfwkdbalroqkfwkdbaladsoinelksmvlorjlkd
   #docker 설정
 #  config:
 #    activate:
@@ -62,3 +64,4 @@ springdoc:
   cache:
     disabled: true
   model-and-view-allowed: true
+

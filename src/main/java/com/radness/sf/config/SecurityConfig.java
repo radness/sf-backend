@@ -5,6 +5,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
@@ -13,10 +15,19 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 public class SecurityConfig {
 
     @Bean
+    public BCryptPasswordEncoder bCryptPasswordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
+    @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http
                 // stateless한 rest api를 개발할 것이므로 csrf 공격에 대한 옵션은 꺼둔다.
                 .csrf(AbstractHttpConfigurer::disable)
+                // form 로그인 방식 disable
+                .formLogin(AbstractHttpConfigurer::disable)
+                // http basic 인증 방식 disable
+                .httpBasic(AbstractHttpConfigurer::disable)
                 // 특정 URL에 대한 권한 설정.
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(
@@ -29,13 +40,11 @@ public class SecurityConfig {
                                 new AntPathRequestMatcher("/h2-console/**"),
                                 new AntPathRequestMatcher("/profile")
                         ).permitAll()
-                        .anyRequest().permitAll())
-//                .formLogin((formLogin) -> {
-//                    /* 권한이 필요한 요청은 해당 url로 리다이렉트 */
-//                    formLogin.loginPage("/login");
-//                })
-                .logout((logout) -> logout
-                        .logoutSuccessUrl("/"))
+                        .requestMatchers("/admin").hasRole("ADMIN")
+                        .anyRequest().authenticated()) // 로그인한 사용자만 접근
+                // 세션 설정(세션을 stateless 상태로 관리)
+                .sessionManagement((session) -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .logout((logout) -> logout.logoutSuccessUrl("/"))
                 .build();
     }
 }

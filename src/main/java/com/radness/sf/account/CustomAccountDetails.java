@@ -33,4 +33,8 @@ public class CustomAccountDetails implements UserDetails {
     public String getUsername() {
         return account.getNickname();
     }
+
+    public String getNickname() {
+        return account.getNickname();
+    }
 }

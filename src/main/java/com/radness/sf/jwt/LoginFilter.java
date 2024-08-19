@@ -23,7 +23,7 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
         String username = obtainUsername(req);
         String password = obtainPassword(req);
 
-        logger.info(username + " , " + password);
+//        logger.info("username: " + username + " and password: " + password);
 
         // 스프링 시큐리티에서 token 에 값을 담아서 검증
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(username, password, null);
@@ -34,12 +34,12 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
 
     @Override
     protected void successfulAuthentication(HttpServletRequest req, HttpServletResponse res, FilterChain filterChain, Authentication authentication) {
-
+        logger.info("success");
     }
 
     @Override
-    protected void unsuccessfulAuthentication(HttpServletRequest req, HttpServletResponse res, AuthenticationException faild) {
-
+    protected void unsuccessfulAuthentication(HttpServletRequest req, HttpServletResponse res, AuthenticationException failed) {
+        logger.info("fail");
     }
 }
 

@@ -2,8 +2,12 @@ package com.radness.sf.account;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
+import org.springframework.beans.factory.annotation.Value;
 
 import java.time.LocalDateTime;
+import java.util.Date;
+import java.util.UUID;
 
 @Entity
 @Getter
@@ -16,10 +20,10 @@ import java.time.LocalDateTime;
 public class Account {
 
     @Id
-    @GeneratedValue
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    @Getter
+    @ColumnDefault("1000")
     private String factoryId;
 
     @Column(unique = true)
@@ -30,11 +34,14 @@ public class Account {
 
     private String password;
 
+    private String role;
+
     private boolean emailVerified; // 인증된 계정인지
 
     private String emailCheckToken; // 토큰값
 
-    private LocalDateTime joinedAt;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date joinedAt;
 
     private String bio;
 

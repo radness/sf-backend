@@ -35,7 +35,7 @@ public class AccountService implements UserDetailsService {
 //        return new UserAccount(account);
     }
 
-    public void login(Account account) {
+    public Account login(Account account) {
         UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(
           // Principal 객체
           new UserAccount(account),
@@ -43,6 +43,7 @@ public class AccountService implements UserDetailsService {
           List.of(new SimpleGrantedAuthority("ROLE_USER")));
 
         SecurityContextHolder.getContext().setAuthentication(token);
+        return account;
     }
 
     public void join(AccountDto account) {

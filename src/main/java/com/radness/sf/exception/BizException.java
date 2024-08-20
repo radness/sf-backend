@@ -6,4 +6,8 @@ public class BizException extends RuntimeException {
         super(msgCode);
     }
 
+    public BizException(String msgCode, String message) {
+        super(message);
+    }
+
 }

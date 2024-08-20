@@ -1,5 +1,6 @@
 package com.radness.sf.config;
 
+import com.radness.sf.jwt.JwtFilter;
 import com.radness.sf.jwt.JwtUtil;
 import com.radness.sf.jwt.LoginFilter;
 import lombok.RequiredArgsConstructor;
@@ -64,6 +65,9 @@ public class SecurityConfig {
                         ).permitAll()
                         .requestMatchers("/admin").hasRole("ADMIN")
                         .anyRequest().authenticated()) // 로그인한 사용자만 접근
+                // 로그인 필터 이전에 JwtFilter를 넣는다
+                .addFilterBefore(new JwtFilter(jwtUtil), LoginFilter.class)
+                // 새로 만든 로그인 필터를 원래의 UsernamePasswordAuthenticationFilter의 자리에 넣는다
                 .addFilterAt(new LoginFilter(authenticationManager(authenticationConfiguration), jwtUtil), UsernamePasswordAuthenticationFilter.class)
                 // 세션 설정(세션을 stateless 상태로 관리)
                 .sessionManagement((session) -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

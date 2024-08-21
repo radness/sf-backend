@@ -1,6 +1,7 @@
 package com.radness.sf.jwt;
 
 import com.radness.sf.account.Account;
+import com.radness.sf.account.AccountRole;
 import com.radness.sf.account.CustomAccountDetails;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -47,7 +48,7 @@ public class JwtFilter extends OncePerRequestFilter {
         Account account = Account.builder()
                 .nickname(jwtUtil.getNickname(token))
                 .password("asd123")
-                .role(jwtUtil.getRole(token))
+                .role(AccountRole.valueOf(jwtUtil.getRole(token)))
                 .build();
 
         CustomAccountDetails customAccountDetails = new CustomAccountDetails(account);

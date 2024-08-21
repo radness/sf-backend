@@ -55,7 +55,7 @@ public class AccountService implements UserDetailsService {
         newAccount.setNickname(account.getNickname());
         newAccount.setEmail(account.getEmail());
         newAccount.setPassword(bCryptPasswordEncoder.encode(account.getPassword()));
-        newAccount.setRole("ROLE_ADMIN");
+        newAccount.setRole(AccountRole.ADMIN);
 
         accountRepository.save(newAccount);
     }

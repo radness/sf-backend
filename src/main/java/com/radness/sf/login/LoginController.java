@@ -27,6 +27,6 @@ public class LoginController {
             throw new BizException("id");
         }
 
-        return jwtUtil.createJwt(account.getNickname(), account.getRole(), 60 * 60 * 10L);
+        return jwtUtil.createJwt(account.getNickname(), String.valueOf(account.getRole()), 60 * 60 * 10L);
     }
 }

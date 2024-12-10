@@ -1,4 +1,4 @@
-package com.radness.sf.Customer;
+package com.radness.sf.customer;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;

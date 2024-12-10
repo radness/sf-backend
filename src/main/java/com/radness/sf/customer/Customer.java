@@ -1,4 +1,4 @@
-package com.radness.sf.Customer;
+package com.radness.sf.customer;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;

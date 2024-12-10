@@ -127,8 +127,18 @@ public class WipLotService {
         return currentWipLot;
     }
 
-    public WipLot mergeWipLot(String lotId, WipLot wipLot) {
-        return null;
+    public WipLot mergeWipLot(WipLot fromWipLot, WipLot toWipLot) {
+        WipLot fromInfo = wipLotRepository.findById(fromWipLot.getWipLotId()).orElseThrow(() -> new IllegalArgumentException("wip lot does not exist."));
+        WipLot newFromInfo = new ModelMapper().map(fromInfo, WipLot.class);
+        WipLot toInfo = wipLotRepository.findById(toWipLot.getWipLotId()).orElseThrow(() -> new IllegalArgumentException("wip lot does not exist."));
+        WipLot newToInfo = new ModelMapper().map(toInfo, WipLot.class);
+        fromInfo.setQty(fromInfo.getQty() + toInfo.getQty());
+        toInfo.setQty(0);
+
+        WipUtils.updateWipLotAndHistory(String.valueOf(WipLotTransactionType.MERGE), fromInfo, newFromInfo);
+        WipUtils.updateWipLotAndHistory(String.valueOf(WipLotTransactionType.MERGE), toInfo, newToInfo);
+
+        return toInfo;
     }
 
     public WipLot holdWipLot(String lotId, WipLot wipLot) {

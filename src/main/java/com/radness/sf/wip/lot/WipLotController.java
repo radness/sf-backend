@@ -67,8 +67,8 @@ public class WipLotController {
     }
 
     @PostMapping("/{lotId}/merge")
-    public WipLot mergeWipLot(@PathVariable String lotId, @RequestBody WipLot wipLot) {
-        return wipLotService.mergeWipLot(lotId, wipLot);
+    public WipLot mergeWipLot(@PathVariable String lotId, @RequestBody String targetLotId) {
+        return wipLotService.mergeWipLot(lotId, targetLotId);
     }
 
     @PostMapping("/{lotId}/hold")

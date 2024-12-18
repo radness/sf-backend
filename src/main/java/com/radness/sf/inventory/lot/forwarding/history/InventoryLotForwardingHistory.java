@@ -12,7 +12,7 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Tag(name = "Inv Lot 출고 이력")
+@Tag(name = "자재 LOT 출고 이력")
 @Table(name = "inventory_lot_forwarding_history")
 public class InventoryLotForwardingHistory {
 

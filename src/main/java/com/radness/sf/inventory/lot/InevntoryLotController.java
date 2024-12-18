@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
-@Tag(name = "Inventory Lot(자재 Lot)")
+@Tag(name = "Inventory Lot(자재 LOT)")
 @RestController
 @RequestMapping("/v3/inventory/lot")
 @RequiredArgsConstructor

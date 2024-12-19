@@ -16,11 +16,12 @@ public class InevntoryLotController {
     private final InventoryLotService inventoryLotService;
 
 
+    @Tag(name = "LOT 조회")
     @GetMapping("/{invLotId}")
     public Optional<InventoryLot> getInventoryLot(@PathVariable String invLotId) {
         return inventoryLotService.getInventoryLot(invLotId);
     }
-
+    @Tag(name = "LOT 목록 조회")
     @GetMapping()
     public List<InventoryLot> getInventoryLots() {
         return null;

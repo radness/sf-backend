@@ -2,16 +2,22 @@ package com.radness.sf.id;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
-import lombok.Data;
+import jakarta.persistence.*;
+import lombok.*;
 
 import java.util.Date;
 
 @Tag(name = "ID 규칙")
-@Data
+@Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@Table(name = "id_rule")
 public class IdRule {
     @Schema(name = "규칙 ID")
+    @Id
     private String ruleId;
     @Schema(name = "규칙 유형")
     private String ruleType;

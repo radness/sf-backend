@@ -1,18 +1,38 @@
 package com.radness.sf.common;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
-import lombok.Data;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.persistence.*;
+import lombok.*;
+import org.springframework.beans.factory.annotation.Value;
 
 import java.util.Date;
 
-@Data
+@Tag(name = "공통 코드 테이블")
+@Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@Table(name = "code_table")
+@IdClass(CodeTablePK.class)
 public class CodeTable {
-    private String factoryCode;
+    @Id
+    @Value("${sf.entry.factoryId}")
+    @Column(name = "factory_id")
+    private String factoryId;
+    @Id
+    @Column(name = "table")
     private String table;
+    @Id
+    @Column(name = "first_primary_key")
     private String firstPrimaryKey;
+    @Id
+    @Column(name = "second_primary_key")
     private String secondPrimaryKey;
+    @Id
+    @Column(name = "third_primary_key")
     private String thirdPrimaryKey;
     private String primaryKeyDescription;
     private String firstColumn;

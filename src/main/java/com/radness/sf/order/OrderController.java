@@ -1,11 +1,13 @@
 package com.radness.sf.order;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 
+@Tag(name = "Work Order(작업지시)")
 @RestController
 @RequestMapping("/v3/orders")
 @RequiredArgsConstructor

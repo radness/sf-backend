@@ -1,10 +1,9 @@
-package com.radness.sf.common;
+package com.radness.sf.code.table;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.beans.factory.annotation.Value;
 
 import java.util.Date;
 
@@ -15,16 +14,15 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Table(name = "code_table")
+@Table(name = "code_tables")
 @IdClass(CodeTablePK.class)
 public class CodeTable {
     @Id
-    @Value("${sf.entry.factoryId}")
     @Column(name = "factory_id")
     private String factoryId;
     @Id
-    @Column(name = "table")
-    private String table;
+    @Column(name = "table_name")
+    private String tableName;
     @Id
     @Column(name = "first_primary_key")
     private String firstPrimaryKey;

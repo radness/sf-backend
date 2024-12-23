@@ -1,14 +1,22 @@
 package com.radness.sf.inventory.delivery.detail;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
-import lombok.Data;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.persistence.*;
+import lombok.*;
 
 import java.util.Date;
 
-@Data
+@Entity
+@Getter
+@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@Table(name = "delivery_details")
+@Tag(name = "납품서 상세")
 public class DeliveryDetail {
+    @Id
     private String id;
     @Schema(name = "납품서 순번")
     private int deliverySeq;

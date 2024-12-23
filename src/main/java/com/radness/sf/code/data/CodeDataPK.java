@@ -1,4 +1,5 @@
-package com.radness.sf.code.table;
+package com.radness.sf.code.data;
+
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
@@ -12,7 +13,7 @@ import java.io.Serializable;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class CodeTablePK implements Serializable {
+public class CodeDataPK implements Serializable {
     @Column(name = "factory_id")
     private String factoryId;
     @Column(name = "table_name")

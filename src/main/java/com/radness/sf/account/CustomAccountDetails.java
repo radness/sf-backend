@@ -18,7 +18,8 @@ public class CustomAccountDetails implements UserDetails {
         collection.add(new GrantedAuthority() {
             @Override
             public String getAuthority() {
-                return account.getRole().name();
+//                return account.getRole().name();
+                return null;
             }
         });
         return collection;

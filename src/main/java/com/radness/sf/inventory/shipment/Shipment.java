@@ -2,6 +2,7 @@ package com.radness.sf.inventory.shipment;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
 
 import java.util.Date;
 
@@ -22,7 +23,9 @@ public class Shipment {
     private Date shippingDate;
     @Temporal(TemporalType.DATE)
     private Date plannedShipmentDate;
+    @ColumnDefault("0")
     private double shipmentPlanQty;
+    @ColumnDefault("0")
     private double shipmentQty;
     private String shipmentStatus;
     private String shipmentAddress;

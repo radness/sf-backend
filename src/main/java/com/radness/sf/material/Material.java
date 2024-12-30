@@ -2,6 +2,7 @@ package com.radness.sf.material;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
 import org.springframework.beans.factory.annotation.Value;
 
 import java.util.Date;
@@ -32,6 +33,7 @@ public class Material {
     @Enumerated(EnumType.STRING)
     private MaterialType materialType;
 
+    @ColumnDefault("0")
     private double qty;
 
     private String unit;
